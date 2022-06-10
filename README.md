@@ -1,4 +1,5 @@
-# uavrt_interfaces
+# UAV-RT Interfaces package
+
 Custom interfaces used within the UAV-RT project.
 
 The development of this code was funded via National Science Foundation grant no. 2104570.
