@@ -34,10 +34,12 @@ endif()
 # https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html
 # https://answers.ros.org/question/362473/how-to-add-a-time-field-in-a-custom-message-file/
 
-#set(msg_files
-#  # No comma after each entry
-#  "msg/Placeholder.msg"
-#)
+set(msg_files
+  # No comma after each entry
+  "msg/Pulse.msg"
+  "msg/PulsePose.msg"
+  "msg/TagDef.msg"
+)
 
 set(srv_files
   # No comma after each entry
@@ -50,15 +52,15 @@ set(srv_files
 # https://github.com/ros2/common_interfaces/blob/1d80aae3de9b0c03052e13ec04a0c32693b38f61/sensor_msgs/CMakeLists.txt#L53=L58
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-#  ${msg_files}
+  ${msg_files}
   ${srv_files}
   DEPENDENCIES builtin_interfaces geometry_msgs diagnostic_msgs std_msgs
   ADD_LINTER_TESTS
 )
 
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION include/${PROJECT_NAME}
-)
+#install(DIRECTORY include/${PROJECT_NAME}/
+#  DESTINATION include/${PROJECT_NAME}
+#)
 
 ament_export_dependencies(rosidl_default_runtime)
 
