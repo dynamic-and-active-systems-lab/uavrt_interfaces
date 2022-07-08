@@ -66,7 +66,7 @@ ament_export_dependencies(rosidl_default_runtime)
 
 # I'm not sure entirely sure what this command does.
 # Seems to install the directories of the install directory of the workspace.
-# Makes in the butt for debugging so I leave it off.
+# Makes it a pain in the butt for debugging so I leave it off.
 # ament_export_include_directories(include)
 
 ament_package()
