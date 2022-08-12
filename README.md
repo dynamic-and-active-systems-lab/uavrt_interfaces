@@ -6,25 +6,21 @@ The development of this code was funded via National Science Foundation grant no
 
 # Features
 
-- Provides the custom GetPose service type
-
-# Basic operation
-
 TBD
 
 # Documentation
 
 The supporting documentation for this project can be found here. (TBD)
 
-TBD
-
 # System requirements
 
 The system requirments for the use of this package can be found here. (TBD)
 
+# Installaton
+
 TBD
 
-# Installaton
+# Basic operation
 
 TBD
 
