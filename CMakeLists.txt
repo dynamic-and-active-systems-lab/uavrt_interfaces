@@ -1,3 +1,10 @@
+# ROS 2 does a cruddy job explaining how to make a custom interface package.
+# Note: I have some links I bookmarked but I will need to find them. 
+# About ROS 2 interfaces:
+# https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html
+# The CMakeLists file used by ROS/ROS2 CARLA is a different but notable
+# example of a CMakeLists file that was constructed for custom interfaces.
+# https://github.com/carla-simulator/ros-carla-msgs/blob/master/CMakeLists.txt
 cmake_minimum_required(VERSION 3.8)
 project(uavrt_interfaces)
 
@@ -6,27 +13,19 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
-find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+# ROS 2 required packages
+find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+
+# ROS 2 interfaces
 find_package(builtin_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(diagnostic_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
-
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # uncomment the line when a copyright and license is not present in all source files
-  #set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # uncomment the line when this package is not in a git repo
-  #set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
 
 # For the use of non-standard messages and services in custom interfaces,
 # you have to add the package prefix before the msg or srv.
@@ -58,15 +57,22 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   ADD_LINTER_TESTS
 )
 
-#install(DIRECTORY include/${PROJECT_NAME}/
-#  DESTINATION include/${PROJECT_NAME}
-#)
-
 ament_export_dependencies(rosidl_default_runtime)
 
 # I'm not sure entirely sure what this command does.
 # Seems to install the directories of the install directory of the workspace.
 # Makes it a pain in the butt for debugging so I leave it off.
 # ament_export_include_directories(include)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # uncomment the line when a copyright and license is not present in all source files
+  #set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # uncomment the line when this package is not in a git repo
+  #set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ament_package()
