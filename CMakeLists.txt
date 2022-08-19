@@ -1,5 +1,5 @@
 # ROS 2 does a cruddy job explaining how to make a custom interface package.
-# Note: I have some links I bookmarked but I will need to find them. 
+# Note: I have some links I bookmarked but I will need to find them.
 # About ROS 2 interfaces:
 # https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html
 # The CMakeLists file used by ROS/ROS2 CARLA is a different but notable
@@ -42,6 +42,7 @@ set(msg_files
 
 set(srv_files
   # No comma after each entry
+  # Note: The GetPose service is currently not used but it is left here as an example. 
   "srv/GetPose.srv"
 )
 

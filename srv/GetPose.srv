@@ -1,5 +1,6 @@
 # This is our custom service that requests one Time object named timestamp
 # and responds with a Pose object called interpolated_pose.
+# Note: The GetPose service is currently not used but it is left here as an example. 
 
 builtin_interfaces/Time timestamp
 ---
