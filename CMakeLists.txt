@@ -27,6 +27,8 @@ find_package(geometry_msgs REQUIRED)
 find_package(diagnostic_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
+include_directories(include)
+
 # For the use of non-standard messages and services in custom interfaces,
 # you have to add the package prefix before the msg or srv.
 # e.g. builtin_interfaces/Time timestamp
@@ -42,7 +44,7 @@ set(msg_files
 
 set(srv_files
   # No comma after each entry
-  # Note: The GetPose service is currently not used but it is left here as an example. 
+  # Note: The GetPose service is currently not used but it is left here as an example.
   "srv/GetPose.srv"
 )
 
@@ -58,12 +60,16 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   ADD_LINTER_TESTS
 )
 
-ament_export_dependencies(rosidl_default_runtime)
+# We need to install the files of uavrt_interfaces so that the files can
+# be accessed by libraries downstream.
+# To learn more, start with "Basics" and then go down to "Building a Library":
+# https://docs.ros.org/en/galactic/How-To-Guides/Ament-CMake-Documentation.html#id1
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
 
-# I'm not sure entirely sure what this command does.
-# Seems to install the directories of the install directory of the workspace.
-# Makes it a pain in the butt for debugging so I leave it off.
-# ament_export_include_directories(include)
+ament_export_dependencies(rosidl_default_runtime)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
