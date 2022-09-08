@@ -26,12 +26,13 @@ enum class CommandID
 	CommandIDAck = 1,
 	// Tag info
 	CommandIDTag = 2,
+	// System start command
+	CommandIDRSC = 3,
+	// System stop command
+	CommandIDRSS = 4,
 	// Detected pulse value
-	CommandIDPulse = 3,
-	// Radio system commands
-	CommandIDRSC = 4,
-	// Radio system state
-	CommandIDRSS = 5
+	CommandIDPulse = 5,
+
 };
 
 enum class AckIndex
@@ -64,23 +65,18 @@ enum class TagIndex
 
 enum class PulseIndex
 {
-
+	// Detection status (uint 32)
+	PulseIndexDetectionStatus = 0,
+	// Pulse strength [0-100] (float)
+	PulseIndexStrength = 1,
+	// Group index 0/1/2 (uint 32)
+	PulseIndexGroupIndex = 2
 };
 
-enum class RSCIndex
+enum class PulseDetectionStatus
 {
-	// The command that will be executed
-	RSCIndexCommand = 0,
-	// The radio system or which process the command will be executed on
-	RSCIndexWho = 1,
-	// If a Detector is specified for ‘who’, this value will correspond to
-	// that Detector’s ID. Otherwise, this value will be ‘0’.
-	RSCIndexDetectorID = 2
-};
-
-enum class RSSIndex
-{
-
+	PulseDetectionStatusSuperThreshold = 1,
+	PulseDetectionStatusConfirm = 2
 };
 
 }  // namespace uavrt_interfaces
