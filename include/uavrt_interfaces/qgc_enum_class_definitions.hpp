@@ -27,9 +27,9 @@ enum class CommandID
 	// Tag info
 	CommandIDTag = 2,
 	// System start command
-	CommandIDRSC = 3,
+	CommandIDStart = 3,
 	// System stop command
-	CommandIDRSS = 4,
+	CommandIDStop = 4,
 	// Detected pulse value
 	CommandIDPulse = 5,
 
