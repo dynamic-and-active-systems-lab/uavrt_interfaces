@@ -106,37 +106,42 @@ enum class PulseIndex
 	PulseIndexSNRPerSample = 7,
 	// Signal + Noise Power Spectral Density (float64/double)
 	// PSD value calculated from the STFT matrix including both signal and
-	// noise during the time of pulse transmission
-	PulseIndexPSDSN = 8,
+	// noise during the time of pulse transmission.
+	PulseIndexPSDSignalNoise = 8,
+	// Noise Power Spectral Density (float64/double)
+	// PSD value of noise only. This is calculated based on the average power
+	// in the pulses’ frequency bin but outside the location in time where
+	// the pulse was located.
+	PulseIndexPSDNoise = 9,
 	// DFT Coefficient Real (float64/double)
 	// This is the real part of the result of the DFT of the time-frequency bin
 	// in which the pulse is located.
-	PulseIndexDFTReal = 9,
+	PulseIndexDFTReal = 10,
 	// DFT Coefficient Imaginary (float64/double)
 	// This is the imaginary part of the result of the DFT of the time-frequency
 	// bin in which the pulse is located.
-	PulseIndexDFTImaginary = 10,
+	PulseIndexDFTImaginary = 11,
 	// Pulse group index (uint16_t)
 	// If more than one pulse is used for incoherent summing, the pulse group
 	// will have up to K pulses. This property indicates where this pulse exists
 	// in that pulse group. This property and the start time property can be
 	// used to recollect pulse groups if needed.
-	PulseIndexGroupIndex = 11,
+	PulseIndexGroupIndex = 12,
 	// Pulse group SNR (float64/double)
 	// TBD
-	PulseIndexGroupSNR = 12,
+	PulseIndexGroupSNR = 13,
 	// Detection status (bool)
 	// This property indicates if the pulse is a subthreshold pulse (0),
 	// superthreshold pulse (1), or confirmed pulse (2). All confirmed pulses
 	// are superthreshold pulses. Confirmed status mean that pulses in near
 	// this frequency were previously detected and this pulse aligns in time
 	// with predictions based on the prior pulse and the tag priori.
-	PulseIndexDetectionStatus = 13,
+	PulseIndexDetectionStatus = 14,
 	// Confirmation status (bool)
 	// This property indicates if the pulse has been confirmed (1), or is of yet
 	// unconfirmed (0). Confirmed pulses had a preceding pulse that was detected
 	// and projected a next pulse that aligned with this pulse.
-	PulseIndexConfirmedStatus = 14
+	PulseIndexConfirmedStatus = 15
 **/
 };
 
