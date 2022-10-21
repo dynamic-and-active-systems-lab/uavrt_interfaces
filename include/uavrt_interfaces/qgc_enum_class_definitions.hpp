@@ -31,7 +31,7 @@ enum class CommandID
 	// System stop command
 	CommandIDStop = 4,
 	// Detected pulse value
-	CommandIDPulse = 5,
+	CommandIDPulse = 5
 
 };
 
@@ -65,34 +65,35 @@ enum class TagIndex
 
 enum class PulseIndex
 {
+	// The first three entries (0-2) are kept here for the purpose of legacy
+	// support with QGC. They should be removed in the future to reduce redundancy.
 	// Detection status (uint 32)
-	PulseIndexDetectionStatus = 0,
+	PulseIndexDetectionStatusLEGACY = 0,
 	// Pulse strength [0-100] (float)
-	PulseIndexStrength = 1,
+	PulseIndexStrengthLEGACY = 1,
 	// Group index 0/1/2 (uint 32)
-	PulseIndexGroupIndex = 2,
+	PulseIndexGroupIndexLEGACY = 2,
 
-/**
 	// Refactored version
-	// Descriptions are from the Interface Control Document
+	// Descriptions and order are from the Interface Control Document
 	// Tag ID (string)
 	// The tag ID that was used for detection priori info. Useful for tractability.
-	PulseIndexTagID = 0,
+	PulseIndexTagID = 3,
 	// Frequency (float64/double)
 	// Frequency at which pulse was detected.
-	PulseIndexFrequency = 1,
+	PulseIndexFrequency = 4,
 	// Time start (builtin_interfaces/Time (double))
 	// System time at rising edge of pulse time bin.
-	PulseIndexStartTime = 2,
+	PulseIndexStartTime = 5,
 	// Time end (builtin_interfaces/Time (double))
 	// System time at falling edge of pulse time bin.
-	PulseIndexEndTime = 3,
+	PulseIndexEndTime = 6,
 	// Expected next pulse time - start (builtin_interfaces/Time (double))
 	// This is the time that the next pulse is expected to occur based on
 	// the current pulse time and the priori pulse interval information.
-	PulseIndexPredictNextStartTime = 4,
+	PulseIndexPredictNextStartTime = 7,
 	// Expected next pulse time - end (builtin_interfaces/Time (double))
-	PulseIndexPredictNextEndTime = 5,
+	PulseIndexPredictNextEndTime = 8,
 	// Pulse SNR (float64/double)
 	// Estimated pulse SNR in dB. This is the SNR during the time of pulse
 	// transmission. Additionally, this is the ratio of the pulses peak
@@ -100,55 +101,48 @@ enum class PulseIndex
 	// See ’Noise PSD’ parameter for how noise power is estimated.
 	// SNR = 10 log10[(PSDS+N- PSDN )/PSDN].
 	// Note: This value is currently being used as the signal strength metric.
-	PulseIndexSNR = 6,
+	PulseIndexSNR = 9,
 	// Pulse per sample SNR (float64/double)
 	// TBD
-	PulseIndexSNRPerSample = 7,
+	PulseIndexSNRPerSample = 10,
 	// Signal + Noise Power Spectral Density (float64/double)
 	// PSD value calculated from the STFT matrix including both signal and
 	// noise during the time of pulse transmission.
-	PulseIndexPSDSignalNoise = 8,
+	PulseIndexPSDSignalNoise = 11,
 	// Noise Power Spectral Density (float64/double)
 	// PSD value of noise only. This is calculated based on the average power
 	// in the pulses’ frequency bin but outside the location in time where
 	// the pulse was located.
-	PulseIndexPSDNoise = 9,
+	PulseIndexPSDNoise = 12,
 	// DFT Coefficient Real (float64/double)
 	// This is the real part of the result of the DFT of the time-frequency bin
 	// in which the pulse is located.
-	PulseIndexDFTReal = 10,
+	PulseIndexDFTReal = 13,
 	// DFT Coefficient Imaginary (float64/double)
 	// This is the imaginary part of the result of the DFT of the time-frequency
 	// bin in which the pulse is located.
-	PulseIndexDFTImaginary = 11,
+	PulseIndexDFTImaginary = 14,
 	// Pulse group index (uint16_t)
 	// If more than one pulse is used for incoherent summing, the pulse group
 	// will have up to K pulses. This property indicates where this pulse exists
 	// in that pulse group. This property and the start time property can be
 	// used to recollect pulse groups if needed.
-	PulseIndexGroupIndex = 12,
+	PulseIndexGroupIndex = 15,
 	// Pulse group SNR (float64/double)
 	// TBD
-	PulseIndexGroupSNR = 13,
+	PulseIndexGroupSNR = 16,
 	// Detection status (bool)
 	// This property indicates if the pulse is a subthreshold pulse (0),
 	// superthreshold pulse (1), or confirmed pulse (2). All confirmed pulses
 	// are superthreshold pulses. Confirmed status mean that pulses in near
 	// this frequency were previously detected and this pulse aligns in time
 	// with predictions based on the prior pulse and the tag priori.
-	PulseIndexDetectionStatus = 14,
+	PulseIndexDetectionStatus = 17,
 	// Confirmation status (bool)
 	// This property indicates if the pulse has been confirmed (1), or is of yet
 	// unconfirmed (0). Confirmed pulses had a preceding pulse that was detected
 	// and projected a next pulse that aligned with this pulse.
-	PulseIndexConfirmedStatus = 15
-**/
-};
-
-enum class PulseDetectionStatus
-{
-	PulseDetectionStatusSuperThreshold = 1,
-	PulseDetectionStatusConfirm = 2
+	PulseIndexConfirmedStatus = 18
 };
 
 }  // namespace uavrt_interfaces

@@ -16,5 +16,3 @@ uint16 group_ind
 float64 group_snr
 bool detection_status
 bool confirmed_status
-
- 
