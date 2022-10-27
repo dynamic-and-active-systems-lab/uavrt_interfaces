@@ -142,7 +142,22 @@ enum class PulseIndex
 	// This property indicates if the pulse has been confirmed (1), or is of yet
 	// unconfirmed (0). Confirmed pulses had a preceding pulse that was detected
 	// and projected a next pulse that aligned with this pulse.
-	PulseIndexConfirmedStatus = 18
+	PulseIndexConfirmedStatus = 18,
+	// This is the longitude of the antenna when the pulse was received. 
+	PulseIndexPositionLongitude = 19,
+	// This is the latitude of the antenna when the pulse was received. 
+	PulseIndexPositionLatitude = 20,
+	// This is the altitude of the antenna when the pulse was received in meters
+	// above the launch location.
+	PulseIndexPositionAltitude = 21,
+	// x element of the antenna orientation quaternion in free space.
+	PulseIndexQuaternionX = 22,
+	// y element of the antenna orientation quaternion in free space.
+	PulseIndexQuaternionY = 23,
+	// z element of the antenna orientation quaternion in free space.
+	PulseIndexQuaternionZ = 24,
+	// w element of the antenna orientation quaternion in free space. 
+	PulseIndexQuaternionW = 25
 };
 
 }  // namespace uavrt_interfaces
