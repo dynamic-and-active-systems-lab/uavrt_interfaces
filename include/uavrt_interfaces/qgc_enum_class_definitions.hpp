@@ -158,6 +158,8 @@ enum class PulseIndex
 	PulseIndexQuaternionZ = 24,
 	// w element of the antenna orientation quaternion in free space. 
 	PulseIndexQuaternionW = 25
+	// Indicates last used index. This is used for logging the correct number of fields in QGC.
+	PulseIndexLast = 25
 };
 
 }  // namespace uavrt_interfaces
