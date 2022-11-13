@@ -52,7 +52,7 @@ typedef struct {
 
 typedef struct {
     HeaderInfo_t	header;
-} StopTagsInfo_t;
+} EndTagsInfo_t;
 
 typedef struct {
     HeaderInfo_t	header;
