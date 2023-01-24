@@ -76,13 +76,13 @@ typedef struct {
 	double 		start_time_seconds;
 	// Time end (builtin_interfaces/Time (double))
 	// System time at falling edge of pulse time bin.
-	double 		end_time_seconds;
+	// double 		end_time_seconds;
 	// Expected next pulse time - start (builtin_interfaces/Time (double))
 	// This is the time that the next pulse is expected to occur based on
 	// the current pulse time and the priori pulse interval information.
-	double 		predict_next_start_seconds;
+	// double 		predict_next_start_seconds;
 	// Expected next pulse time - end (builtin_interfaces/Time (double))
-	double 		predict_next_end_seconds;
+	// double 		predict_next_end_seconds;
 	// Pulse SNR (float64/double)
 	// Estimated pulse SNR in dB. This is the SNR during the time of pulse
 	// transmission. Additionally, this is the ratio of the pulses peak
@@ -93,24 +93,24 @@ typedef struct {
 	double 		snr;
 	// Pulse per sample SNR (float64/double)
 	// TBD
-	double 		snr_per_sample;
+	// double 		snr_per_sample;
 	// Signal + Noise Power Spectral Density (float64/double)
 	// PSD value calculated from the STFT matrix including both signal and
 	// noise during the time of pulse transmission.
-	double 		psd_sn;
+	// double 		psd_sn;
 	// Noise Power Spectral Density (float64/double)
 	// PSD value of noise only. This is calculated based on the average power
 	// in the pulses’ frequency bin but outside the location in time where
 	// the pulse was located.
-	double 		psd_n;
+	// double 		psd_n;
 	// DFT Coefficient Real (float64/double)
 	// This is the real part of the result of the DFT of the time-frequency bin
 	// in which the pulse is located.
-	double 		dft_real;
+	// double 		dft_real;
 	// DFT Coefficient Imaginary (float64/double)
 	// This is the imaginary part of the result of the DFT of the time-frequency
 	// bin in which the pulse is located.
-	double 		dft_imag;
+	// double 		dft_imag;
 	// Pulse group index (uint16_t)
 	// If more than one pulse is used for incoherent summing, the pulse group
 	// will have up to K pulses. This property indicates where this pulse exists
@@ -147,7 +147,7 @@ typedef struct {
 	double 		orientation_z;
 	// w element of the antenna orientation quaternion in free space.
 	double 		orientation_w;
-} PulseInfo_t;
+} CondensedPulseInfo_t;
 
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
@@ -156,6 +156,6 @@ typedef struct {
 	sizeof(TunnelProtocol::EndTagsInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StartDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StopDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::PulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
+	sizeof(TunnelProtocol::CondensedPulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
 
 }
