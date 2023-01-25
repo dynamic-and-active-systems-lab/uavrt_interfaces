@@ -74,15 +74,10 @@ typedef struct {
 	// Time start (builtin_interfaces/Time (double))
 	// System time at rising edge of pulse time bin.
 	double 		start_time_seconds;
-	// Time end (builtin_interfaces/Time (double))
-	// System time at falling edge of pulse time bin.
-	// double 		end_time_seconds;
 	// Expected next pulse time - start (builtin_interfaces/Time (double))
 	// This is the time that the next pulse is expected to occur based on
 	// the current pulse time and the priori pulse interval information.
-	// double 		predict_next_start_seconds;
-	// Expected next pulse time - end (builtin_interfaces/Time (double))
-	// double 		predict_next_end_seconds;
+	double 		predict_next_start_seconds;
 	// Pulse SNR (float64/double)
 	// Estimated pulse SNR in dB. This is the SNR during the time of pulse
 	// transmission. Additionally, this is the ratio of the pulses peak
@@ -91,47 +86,30 @@ typedef struct {
 	// SNR = 10 log10[(PSDS+N- PSDN )/PSDN].
 	// Note: This value is currently being used as the signal strength metric.
 	double 		snr;
-	// Pulse per sample SNR (float64/double)
+	// STFT Score (float64/double)
 	// TBD
-	// double 		snr_per_sample;
-	// Signal + Noise Power Spectral Density (float64/double)
-	// PSD value calculated from the STFT matrix including both signal and
-	// noise during the time of pulse transmission.
-	// double 		psd_sn;
-	// Noise Power Spectral Density (float64/double)
-	// PSD value of noise only. This is calculated based on the average power
-	// in the pulses’ frequency bin but outside the location in time where
-	// the pulse was located.
-	// double 		psd_n;
-	// DFT Coefficient Real (float64/double)
-	// This is the real part of the result of the DFT of the time-frequency bin
-	// in which the pulse is located.
-	// double 		dft_real;
-	// DFT Coefficient Imaginary (float64/double)
-	// This is the imaginary part of the result of the DFT of the time-frequency
-	// bin in which the pulse is located.
-	// double 		dft_imag;
+	double 		stft_score;
 	// Pulse group index (uint16_t)
 	// If more than one pulse is used for incoherent summing, the pulse group
 	// will have up to K pulses. This property indicates where this pulse exists
 	// in that pulse group. This property and the start time property can be
 	// used to recollect pulse groups if needed.
-	uint32_t 	group_ind;
+	uint16_t 	group_ind;
 	// Pulse group SNR (float64/double)
 	// TBD
 	double 		group_snr;
-	// Detection status (bool)
+	// Detection status (bool converted to uint8_t)
 	// This property indicates if the pulse is a subthreshold pulse (0),
 	// superthreshold pulse (1), or confirmed pulse (2). All confirmed pulses
 	// are superthreshold pulses. Confirmed status mean that pulses in near
 	// this frequency were previously detected and this pulse aligns in time
 	// with predictions based on the prior pulse and the tag priori.
-	uint32_t 	detection_status;
-	// Confirmation status (bool)
+	uint8_t 	detection_status;
+	// Confirmation status (bool converted to uint8_t)
 	// This property indicates if the pulse has been confirmed (1), or is of yet
 	// unconfirmed (0). Confirmed pulses had a preceding pulse that was detected
 	// and projected a next pulse that aligned with this pulse.
-	uint32_t 	confirmed_status;
+	uint8_t 	confirmed_status;
 	// This is the longitude of the antenna when the pulse was received. 
 	double 		position_x;
 	// This is the latitude of the antenna when the pulse was received. 
