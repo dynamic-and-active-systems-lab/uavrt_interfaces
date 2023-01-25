@@ -1,7 +1,7 @@
 # This is our custom message for pulses
 
 string detector_dir
-string tag_id
+uint32 tag_id
 float64 frequency
 builtin_interfaces/Time start_time
 builtin_interfaces/Time end_time
