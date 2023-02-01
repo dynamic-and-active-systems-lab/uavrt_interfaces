@@ -1,6 +1,6 @@
 # This is our custom message for defining priori information for a tag
 
-uint32_t tag_id
+uint32 tag_id
 float64 frequency
 float64 pulse_duration
 float64 interpulse_time_1
