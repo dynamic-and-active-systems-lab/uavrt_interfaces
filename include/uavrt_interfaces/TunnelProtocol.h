@@ -135,8 +135,8 @@ typedef struct {
     HeaderInfo_t	header;
 
 	// Confirmation as to whether detection can be started or not
-	uint32_t		id;
-} DetectionConfirmationInfo_t;
+	uint32_t		status;
+} StatusConfirmationInfo_t;
 
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
@@ -146,6 +146,6 @@ typedef struct {
 	sizeof(TunnelProtocol::StartDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StopDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::PulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
-	sizeof(TunnelProtocol::DetectionConfirmationInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
+	sizeof(TunnelProtocol::StatusConfirmationInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
 
 }
