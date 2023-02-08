@@ -43,6 +43,10 @@ typedef struct {
 	uint32_t		intra_pulse_uncertainty_msecs;
 	// Intra-pulse jitter
 	uint32_t		intra_pulse_jitter_msecs;
+	//
+	uint32_t		k;
+	//
+	double			false_alarm_probability;
 } TagInfo_t;
 
 typedef struct {
@@ -125,7 +129,14 @@ typedef struct {
 	double 		orientation_z;
 	// w element of the antenna orientation quaternion in free space.
 	double 		orientation_w;
-} CondensedPulseInfo_t;
+} PulseInfo_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+
+	// Confirmation as to whether detection can be started or not
+	uint32_t		id;
+} DetectionConfirmationInfo_t;
 
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
@@ -134,6 +145,7 @@ typedef struct {
 	sizeof(TunnelProtocol::EndTagsInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StartDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StopDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::CondensedPulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
+	sizeof(TunnelProtocol::PulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
+	sizeof(TunnelProtocol::DetectionConfirmationInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
 
 }
