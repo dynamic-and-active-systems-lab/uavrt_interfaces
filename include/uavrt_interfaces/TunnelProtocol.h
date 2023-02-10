@@ -31,7 +31,7 @@ typedef struct {
 
 	// Tag id (uint 32)
 	uint32_t		id;
-	// Frequency - 6 digits shifted by three decimals, NNNNNN means NNN.NNN000 Mhz (uint 32)
+	// Frequency (uint 32)
 	uint32_t		frequency_hz;
 	// Pulse duration
 	uint32_t		pulse_width_msecs;
@@ -43,9 +43,9 @@ typedef struct {
 	uint32_t		intra_pulse_uncertainty_msecs;
 	// Intra-pulse jitter
 	uint32_t		intra_pulse_jitter_msecs;
-	//
+	// Number of pulses to integrate by
 	uint32_t		k;
-	//
+	// Probability of a false alarm given that ??
 	double			false_alarm_probability;
 } TagInfo_t;
 
@@ -69,10 +69,10 @@ typedef struct {
     HeaderInfo_t	header;
 
 	// Descriptions and order are from the Interface Control Document
-	// Tag ID (string)
+	// Tag ID (uint32_t)
 	// The tag ID that was used for detection priori info. Useful for tractability.
 	uint32_t 	tag_id;
-	// Frequency (float64/double)
+	// Frequency (uint32_t)
 	// Frequency at which pulse was detected.
 	uint32_t 	frequency_hz;
 	// Time start (builtin_interfaces/Time (double))
