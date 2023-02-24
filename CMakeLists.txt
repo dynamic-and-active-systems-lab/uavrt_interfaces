@@ -39,7 +39,7 @@ set(msg_files
   # No comma after each entry
   "msg/Pulse.msg"
   "msg/PulsePose.msg"
-  "msg/TagDef.msg"
+  "msg/Tag.msg"
 )
 
 set(srv_files

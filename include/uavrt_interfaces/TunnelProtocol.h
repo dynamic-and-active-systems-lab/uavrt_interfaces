@@ -45,7 +45,7 @@ typedef struct {
 	uint32_t		intra_pulse_jitter_msecs;
 	// Number of pulses to integrate by
 	uint32_t		k;
-	// Probability of a false alarm given that ??
+	// Probability of a false alarm
 	double			false_alarm_probability;
 } TagInfo_t;
 

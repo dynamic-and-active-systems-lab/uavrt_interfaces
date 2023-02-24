@@ -7,3 +7,5 @@ float64 interpulse_time_1
 float64 interpulse_time_uncert
 float64 interpulse_time_jitter
 float64 interpulse_time_2
+uint32 k
+float64 false_alarm_probability
