@@ -47,6 +47,8 @@ typedef struct {
 	uint32_t		k;
 	// Probability of a false alarm
 	double			false_alarm_probability;
+	// The 1-based channel which is input from the channelizer. 0 for unknown.
+	uint32_t		channelizer_bin;
 } TagInfo_t;
 
 typedef struct {
