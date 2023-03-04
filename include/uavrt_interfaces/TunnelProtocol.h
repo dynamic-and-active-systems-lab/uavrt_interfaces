@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace TunnelProtocol {
 
 #define COMMAND_ID_ACK              1   // Ack response to command
