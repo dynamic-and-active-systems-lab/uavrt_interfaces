@@ -97,6 +97,10 @@ typedef struct {
 	// STFT Score (float64/double)
 	// TBD
 	double 		stft_score;
+	// For each pulse in a K group this value will be the same. This allows you
+	// to be able to reconstruct the pulse group if needed. The value is incremented
+	// with each new pulse group sent out over UDP/ROS.
+	uint16_t 	group_seq_counter;
 	// Pulse group index (uint16_t)
 	// If more than one pulse is used for incoherent summing, the pulse group
 	// will have up to K pulses. This property indicates where this pulse exists
