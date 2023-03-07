@@ -13,9 +13,15 @@ namespace TunnelProtocol {
 #define COMMAND_ID_PULSE           	7   // Detected pulse value
 #define COMMAND_ID_AIRSPY_HF        8 	// Capture raw Airspy HF+ data
 #define COMMAND_ID_AIRSPY_MINI      9   // Capture raw Airspy mini data
+#define COMMMAND_ID_HEARTBEAT	   10  	// Heartbeat message
 
+// AckInfo_t result values
 #define COMMAND_RESULT_SUCCESS		1
-#define COMMAND_RESULT_FAILURE		0
+#define COMMAND_RESULT_FAILURE
+
+// HeartBeat_t codes
+#define HEARTBEAT_SYSTEM_MAVLINKCONTROLLER	1
+#define HEARTBEAT_SYSTEM_CHANNELIZER		1
 
 typedef struct {
 	uint32_t command;
@@ -146,6 +152,13 @@ typedef struct {
 	uint32_t		status;
 } StatusConfirmationInfo_t;
 
+typedef struct {
+	HeaderInfo_t 	header;
+
+	uint16_t		system_id;
+	uint16_t		status;
+} Heartbeat_t;
+
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::TagInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
@@ -154,6 +167,7 @@ typedef struct {
 	sizeof(TunnelProtocol::StartDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StopDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::PulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::Heartbeat_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StatusConfirmationInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
 
 }
