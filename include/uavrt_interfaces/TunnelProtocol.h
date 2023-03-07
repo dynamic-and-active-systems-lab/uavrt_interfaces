@@ -13,15 +13,15 @@ namespace TunnelProtocol {
 #define COMMAND_ID_PULSE           	7   // Detected pulse value
 #define COMMAND_ID_AIRSPY_HF        8 	// Capture raw Airspy HF+ data
 #define COMMAND_ID_AIRSPY_MINI      9   // Capture raw Airspy mini data
-#define COMMMAND_ID_HEARTBEAT	   10  	// Heartbeat message
+#define COMMAND_ID_HEARTBEAT	   	10  // Heartbeat message
 
 // AckInfo_t result values
 #define COMMAND_RESULT_SUCCESS		1
-#define COMMAND_RESULT_FAILURE
+#define COMMAND_RESULT_FAILURE		0
 
 // HeartBeat_t codes
 #define HEARTBEAT_SYSTEM_MAVLINKCONTROLLER	1
-#define HEARTBEAT_SYSTEM_CHANNELIZER		1
+#define HEARTBEAT_SYSTEM_CHANNELIZER		2
 
 typedef struct {
 	uint32_t command;
