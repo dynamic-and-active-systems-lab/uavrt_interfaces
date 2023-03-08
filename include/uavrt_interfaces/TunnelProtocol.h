@@ -55,12 +55,16 @@ typedef struct {
 	uint32_t		k;
 	// Probability of a false alarm
 	double			false_alarm_probability;
-	// The 1-based channel which is input from the channelizer. 0 for unknown.
-	uint32_t		channelizer_bin;
+	// The 1-based channel index from which this channel is output from the channelizer.
+	uint32_t		channelizer_channel_number;
+	// The center frequency of the above channel
+	uint32_t		channelizer_channel_center_frequency_hz;
 } TagInfo_t;
 
 typedef struct {
     HeaderInfo_t	header;
+	// The center frequency to tune the radio to for sample collection
+	uint32_t		radio_center_frequency_hz;
 } StartDetectionInfo_t;
 
 typedef struct {
