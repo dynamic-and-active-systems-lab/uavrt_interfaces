@@ -59,6 +59,11 @@ typedef struct {
 	uint32_t		channelizer_channel_number;
 	// The center frequency of the above channel
 	uint32_t		channelizer_channel_center_frequency_hz;
+	// Pre-calculated threshold information for both pulse rates. NaN for not available
+	double			ip1_mu;
+	double			ip1_sigma;
+	double			ip2_mu;
+	double			ip2_sigma;
 } TagInfo_t;
 
 typedef struct {
