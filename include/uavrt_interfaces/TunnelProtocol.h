@@ -11,9 +11,8 @@ namespace TunnelProtocol {
 #define COMMAND_ID_START_DETECTION  5   // Start pulse detection
 #define COMMAND_ID_STOP_DETECTION   6   // Stop pulse detection
 #define COMMAND_ID_PULSE           	7   // Detected pulse value
-#define COMMAND_ID_AIRSPY_HF        8 	// Capture raw Airspy HF+ data
-#define COMMAND_ID_AIRSPY_MINI      9   // Capture raw Airspy mini data
-#define COMMAND_ID_HEARTBEAT	   	10  // Heartbeat message
+#define COMMAND_ID_RAW_CAPTURE      8 	// Capture raw sdr data
+#define COMMAND_ID_HEARTBEAT	   	9  	// Heartbeat message
 
 // AckInfo_t result values
 #define COMMAND_RESULT_SUCCESS		1
@@ -22,6 +21,10 @@ namespace TunnelProtocol {
 // HeartBeat_t codes
 #define HEARTBEAT_SYSTEM_MAVLINKCONTROLLER	1
 #define HEARTBEAT_SYSTEM_CHANNELIZER		2
+
+// SDR types
+#define SDR_TYPE_AIRSPY_MINI	1
+#define SDR_TYPE_AIRSPY_HF		2
 
 typedef struct {
 	uint32_t command;
@@ -68,8 +71,11 @@ typedef struct {
 
 typedef struct {
     HeaderInfo_t	header;
+
 	// The center frequency to tune the radio to for sample collection
 	uint32_t		radio_center_frequency_hz;
+	// SDR type: SDR_TYPE_*
+	uint32_t		sdr_type;
 } StartDetectionInfo_t;
 
 typedef struct {
@@ -78,6 +84,9 @@ typedef struct {
 
 typedef struct {
     HeaderInfo_t	header;
+
+	// SDR type: SDR_TYPE_*
+	uint32_t		sdr_type;
 } StartTagsInfo_t;
 
 typedef struct {
@@ -168,15 +177,23 @@ typedef struct {
 	uint16_t		status;
 } Heartbeat_t;
 
+typedef struct {
+    HeaderInfo_t	header;
+
+	// SDR type: SDR_TYPE_*
+	uint32_t		sdr_type;
+} RawCapture_t;
+
 #define TunnelProtocolValidateSizes \
-	((sizeof(TunnelProtocol::AckInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::TagInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::StartTagsInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::EndTagsInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::StartDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::StopDetectionInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::PulseInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::Heartbeat_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
-	sizeof(TunnelProtocol::StatusConfirmationInfo_t) <= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
+	((sizeof(TunnelProtocol::AckInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::TagInfo_t) 					<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::StartTagsInfo_t) 			<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::EndTagsInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::StartDetectionInfo_t) 		<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::StopDetectionInfo_t) 		<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::PulseInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::RawCapture_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::Heartbeat_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::StatusConfirmationInfo_t) 	<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN))
 
 }
