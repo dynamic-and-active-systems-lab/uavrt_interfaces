@@ -13,6 +13,8 @@ namespace TunnelProtocol {
 #define COMMAND_ID_PULSE           	7   // Detected pulse value
 #define COMMAND_ID_RAW_CAPTURE      8 	// Capture raw sdr data
 #define COMMAND_ID_HEARTBEAT	   	9  	// Heartbeat message
+#define COMMAND_ID_START_ROTATION	10	// Start rotation, these ids are never sent as commands but are used to log the start and stop of rotation in the csv files
+#define COMMAND_ID_STOP_ROTATION	11	// Cancel rotation, these ids are never sent as commands but are used to log the start and stop of rotation in the csv files
 
 // AckInfo_t result values
 #define COMMAND_RESULT_SUCCESS		1
@@ -101,7 +103,7 @@ typedef struct {
 	// The tag ID that was used for detection priori info. Useful for tractability.
 	uint32_t 	tag_id;
 	// Frequency (uint32_t)
-	// Frequency at which pulse was detected.
+	// Frequency at which pulse was detected. 0 value indicates detector heartbeat.
 	uint32_t 	frequency_hz;
 	// Time start (builtin_interfaces/Time (double))
 	// System time at rising edge of pulse time bin.
@@ -183,6 +185,24 @@ typedef struct {
 	// SDR type: SDR_TYPE_*
 	uint32_t		sdr_type;
 } RawCapture_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+
+	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
+	double		latitude;
+	double		longitude;
+	double		altitude_AMSL;
+} StartRotation_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+
+	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
+	double		latitude;
+	double		longitude;
+	double		altitude_AMSL;
+} StopRotation_t;
 
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
