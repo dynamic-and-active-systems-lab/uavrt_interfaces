@@ -163,6 +163,8 @@ typedef struct {
 	double 		orientation_z;
 	// w element of the antenna orientation quaternion in free space.
 	double 		orientation_w;
+	// This is the estimated noise PSD at the frequency of the pulse.
+	double		noise_psd;
 } PulseInfo_t;
 
 typedef struct {
