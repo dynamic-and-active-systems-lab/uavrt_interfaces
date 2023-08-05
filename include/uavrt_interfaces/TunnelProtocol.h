@@ -136,6 +136,8 @@ typedef struct {
 	// Pulse group SNR (float64/double)
 	// TBD
 	double 		group_snr;
+	// This is the estimated noise PSD at the frequency of the pulse.
+	double		noise_psd;
 	// Detection status (bool converted to uint8_t)
 	// This property indicates if the pulse is a subthreshold pulse (0),
 	// superthreshold pulse (1), or confirmed pulse (2). All confirmed pulses
@@ -156,15 +158,13 @@ typedef struct {
 	// above the launch location.
 	double 		position_z;
 	// x element of the antenna orientation quaternion in free space.
-	double 		orientation_x;
+	float 		orientation_x;
 	// y element of the antenna orientation quaternion in free space.
-	double 		orientation_y;
+	float 		orientation_y;
 	// z element of the antenna orientation quaternion in free space.
-	double 		orientation_z;
+	float 		orientation_z;
 	// w element of the antenna orientation quaternion in free space.
-	double 		orientation_w;
-	// This is the estimated noise PSD at the frequency of the pulse.
-	double		noise_psd;
+	float 		orientation_w;
 } PulseInfo_t;
 
 typedef struct {
