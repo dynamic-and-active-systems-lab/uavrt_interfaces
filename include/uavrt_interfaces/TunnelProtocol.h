@@ -21,8 +21,13 @@ namespace TunnelProtocol {
 #define COMMAND_RESULT_FAILURE		0
 
 // HeartBeat_t codes
-#define HEARTBEAT_SYSTEM_MAVLINKCONTROLLER	1
-#define HEARTBEAT_SYSTEM_CHANNELIZER		2
+#define HEARTBEAT_SYSTEM_ID_MAVLINKCONTROLLER	1
+#define HEARTBEAT_SYSTEM_ID_CHANNELIZER			2
+#define HEARTBEAT_STATUS_IDLE					0	// Waiting for Tags to be sent
+#define HEARTBEAT_STATUS_RECEIVING_TAGS			1	// In the middle fo tag receive sequence
+#define HEARTBEAT_STATUS_HAS_TAGS				2	// Tags are known, waiting for detection start
+#define HEARTBEAT_STATUS_DETECTING				3	// Detection is in progress
+#define HEARTBEAT_STATUS_CAPTURE				4	// Capturing raw data
 
 // SDR types
 #define SDR_TYPE_AIRSPY_MINI	1
