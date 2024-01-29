@@ -33,6 +33,10 @@ namespace TunnelProtocol {
 #define SDR_TYPE_AIRSPY_MINI	1
 #define SDR_TYPE_AIRSPY_HF		2
 
+#ifndef MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN
+#define MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN 128
+#endif
+
 typedef struct {
 	uint32_t command;
 } HeaderInfo_t;
