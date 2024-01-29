@@ -42,6 +42,7 @@ typedef struct {
 
 	uint32_t		command;
 	uint32_t		result;
+    char            message[MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN - sizeof(HeaderInfo_t) - 2 * sizeof(uint32_t)];
 } AckInfo_t;
 
 typedef struct {
