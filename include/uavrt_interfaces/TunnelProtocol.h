@@ -189,6 +189,7 @@ typedef struct {
 
 	uint16_t		system_id;
 	uint16_t		status;
+	float			cpu_temp_c;
 } Heartbeat_t;
 
 typedef struct {
