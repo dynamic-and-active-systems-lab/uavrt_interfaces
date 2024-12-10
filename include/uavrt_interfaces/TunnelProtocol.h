@@ -84,8 +84,6 @@ typedef struct {
 
 	// The center frequency to tune the radio to for sample collection
 	uint32_t		radio_center_frequency_hz;
-	// SDR type: SDR_TYPE_*
-	uint32_t		sdr_type;
 } StartDetectionInfo_t;
 
 typedef struct {
@@ -94,14 +92,37 @@ typedef struct {
 
 typedef struct {
     HeaderInfo_t	header;
-
-	// SDR type: SDR_TYPE_*
-	uint32_t		sdr_type;
 } StartTagsInfo_t;
 
 typedef struct {
     HeaderInfo_t	header;
 } EndTagsInfo_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+
+	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
+	double		latitude;
+	double		longitude;
+	double		altitude_AMSL;
+} StartRotation_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+
+	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
+	double		latitude;
+	double		longitude;
+	double		altitude_AMSL;
+} StopRotation_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+} SaveLogsInfo_t;
+
+typedef struct {
+    HeaderInfo_t	header;
+} CleanLogsInfo_t;
 
 typedef struct {
     HeaderInfo_t	header;
@@ -190,24 +211,6 @@ typedef struct {
 	float			cpu_temp_c;
 } Heartbeat_t;
 
-typedef struct {
-    HeaderInfo_t	header;
-
-	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
-	double		latitude;
-	double		longitude;
-	double		altitude_AMSL;
-} StartRotation_t;
-
-typedef struct {
-    HeaderInfo_t	header;
-
-	// Never sent as a command to the vehicle. Just documented here to specify the csv file format values
-	double		latitude;
-	double		longitude;
-	double		altitude_AMSL;
-} StopRotation_t;
-
 #define TunnelProtocolValidateSizes \
 	((sizeof(TunnelProtocol::AckInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::TagInfo_t) 					<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
@@ -215,6 +218,8 @@ typedef struct {
 	sizeof(TunnelProtocol::EndTagsInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StartDetectionInfo_t) 		<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::StopDetectionInfo_t) 		<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::SaveLogsInfo_t) 			<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
+	sizeof(TunnelProtocol::CleanLogsInfo_t) 		<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::PulseInfo_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::RawCapture_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
 	sizeof(TunnelProtocol::Heartbeat_t) 				<= MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN && \
