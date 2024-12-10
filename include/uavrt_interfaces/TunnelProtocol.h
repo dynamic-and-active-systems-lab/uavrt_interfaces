@@ -15,6 +15,8 @@ namespace TunnelProtocol {
 #define COMMAND_ID_HEARTBEAT	   	9  	// Heartbeat message
 #define COMMAND_ID_START_ROTATION	10	// Start rotation, these ids are never sent as commands but are used to log the start and stop of rotation in the csv files
 #define COMMAND_ID_STOP_ROTATION	11	// Cancel rotation, these ids are never sent as commands but are used to log the start and stop of rotation in the csv files
+#define COMMAND_ID_SAVE_LOGS		12	// Save logs to usb sd card connected to rpi
+#define COMMAND_ID_CLEAN_LOGS		13	// Clean logs from rpi
 
 // AckInfo_t result values
 #define COMMAND_RESULT_SUCCESS		1
@@ -28,10 +30,6 @@ namespace TunnelProtocol {
 #define HEARTBEAT_STATUS_HAS_TAGS				2	// Tags are known, waiting for detection start
 #define HEARTBEAT_STATUS_DETECTING				3	// Detection is in progress
 #define HEARTBEAT_STATUS_CAPTURE				4	// Capturing raw data
-
-// SDR types
-#define SDR_TYPE_AIRSPY_MINI	1
-#define SDR_TYPE_AIRSPY_HF		2
 
 #ifndef MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN
 #define MAVLINK_MSG_TUNNEL_FIELD_PAYLOAD_LEN 128
@@ -191,13 +189,6 @@ typedef struct {
 	uint16_t		status;
 	float			cpu_temp_c;
 } Heartbeat_t;
-
-typedef struct {
-    HeaderInfo_t	header;
-
-	// SDR type: SDR_TYPE_*
-	uint32_t		sdr_type;
-} RawCapture_t;
 
 typedef struct {
     HeaderInfo_t	header;
