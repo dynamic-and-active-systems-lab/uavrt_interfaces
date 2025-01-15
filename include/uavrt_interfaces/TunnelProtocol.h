@@ -82,8 +82,8 @@ typedef struct {
 typedef struct {
     HeaderInfo_t	header;
 
-	// The center frequency to tune the radio to for sample collection
-	uint32_t		radio_center_frequency_hz;
+	uint32_t		radio_center_frequency_hz;	// The center frequency to tune the radio to for sample collection
+	uint32_t		gain;  						// Sensitivity gain setting for airspy 1- 21
 } StartDetectionInfo_t;
 
 typedef struct {
@@ -126,6 +126,7 @@ typedef struct {
 
 typedef struct {
     HeaderInfo_t	header;
+	uint32_t		gain;  // Sensitivity gain setting for airspy 1- 21
 } RawCaptureInfo_t;
 
 typedef struct {
